@@ -53,10 +53,10 @@ npm run lint
 npx expo-doctor
 ```
 
-The dashboard source typechecks, the dashboard files pass ESLint, and Expo Doctor passes its project checks. Browser testing also covered course search (including no matches), attendance updates, invalid and valid marks, sample-data reset, and deadline states. The starter project's unused `src/hooks/use-color-scheme.web.ts` still has an unrelated project-wide lint warning.
+The dashboard source typechecks, the dashboard files pass ESLint, and Expo Doctor passes its project checks. Browser testing also covered course search (including no matches), attendance updates, invalid and valid marks, sample-data reset, and deadline states.
 
 ## Submission materials
 
 - Source code and setup instructions: this repository.
 - Screenshots/demo: capture the dashboard and its interactions on the intended phone or emulator, then add the images/video to the submission or repository before submitting.
-- AI assistance disclosure: see [`AI-USAGE.md`](./AI-USAGE.md). If the course provides a separate AI Usage Report template, copy these factual details into that template.
+- AI assistance disclosure: see AI USAGE REPORT.docx
