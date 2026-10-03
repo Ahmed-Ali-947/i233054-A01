@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "i233054-A01",
+    "name": "Student Pulse",
     "slug": "i233054-A01",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "i233054a01",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "ios": {
       "icon": "./assets/expo.icon"
     },
@@ -28,7 +28,7 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#F5F6F2",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }

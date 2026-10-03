@@ -1,56 +1,62 @@
-# Welcome to your Expo app 👋
+# Student Pulse
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Student Pulse is a focused academic dashboard that helps students notice attendance and coursework risks early. It runs on local sample data; no account, backend, or network connection is required.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Semester summary for attendance, latest marks, and upcoming assignments.
+- Automatic attendance warnings for courses below the 75% threshold.
+- Course cards with attendance progress, latest mark, and assignment deadline.
+- Bar chart comparing attendance by course and line chart showing average marks across recent assessments.
+- Search by course name or code, with a clear no-results state.
+- Quick controls to record a class as present or absent, or update a latest mark from 0 to 100.
+- Immediate validation and feedback, empty deadline handling, and a sample-data reset.
+- Three focused in-page views—Overview, Courses, and Assignments—selected using top buttons and conditional rendering, without side or bottom navigation bars.
 
-   ```bash
-   npm install
-   ```
+## Problem statement
 
-2. Start the app
+Students can miss early signs that attendance is slipping or assignments are approaching when academic information is scattered. Student Pulse brings those signals into one mobile-friendly view so a student can check course status and take a small corrective action quickly.
 
-   ```bash
-   npx expo start
-   ```
+## Sample data and calculations
 
-In the output, you'll find options to open the app in a
+Sample courses, attendance totals, assessment marks, and assignment dates are defined in [`src/data/courses.ts`](./src/data/courses.ts). The dashboard derives its summaries, warnings, cards, and charts from the same in-memory course state.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+The attendance warning threshold is `75%`. Overall attendance is weighted by the number of classes held, while the latest-mark summary is the unweighted average of each course's most recent mark. Recording a class increases the total held classes and, for a present entry, the attended count. Updating a mark replaces that course's latest assessment value. Reset demo restores the original sample values.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+All sample dates are for Fall 2026. Changes are held in app state and reset when the app reloads.
 
-## Get a fresh project
+## React concepts demonstrated
 
-When you're ready, run:
+- `src/app/index.tsx` owns course, search, selected-course, form, and feedback state using React state hooks.
+- `src/data/courses.ts` defines the course objects, reusable `Course` type, and the easy-to-change attendance threshold.
+- `src/components/student-pulse.tsx` contains reusable components that receive data and handlers through props.
+- Lists and charts are rendered from course arrays; attendance and marks updates recalculate the summary, warnings, cards, and chart data.
+- Search filtering, conditional warnings, validation feedback, no-results feedback, and empty/past/upcoming assignment states demonstrate conditional rendering and array methods.
+- The top Overview, Courses, and Assignments buttons change the visible content using conditional rendering in the same screen.
+
+## Run the app
+
+Install dependencies and start Expo:
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Then open the project in Expo Go on a compatible phone, an Android/iOS emulator, or press `w` in the Expo terminal to run the web version. The charts use `react-native-chart-kit` and Expo-compatible `react-native-svg`.
 
-### Other setup steps
+Useful checks:
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```bash
+npx tsc --noEmit
+npm run lint
+npx expo-doctor
+```
 
-## Learn more
+The dashboard source typechecks, the dashboard files pass ESLint, and Expo Doctor passes its project checks. Browser testing also covered course search (including no matches), attendance updates, invalid and valid marks, sample-data reset, and deadline states. The starter project's unused `src/hooks/use-color-scheme.web.ts` still has an unrelated project-wide lint warning.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Submission materials
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Source code and setup instructions: this repository.
+- Screenshots/demo: capture the dashboard and its interactions on the intended phone or emulator, then add the images/video to the submission or repository before submitting.
+- AI assistance disclosure: see [`AI-USAGE.md`](./AI-USAGE.md). If the course provides a separate AI Usage Report template, copy these factual details into that template.
